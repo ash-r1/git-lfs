@@ -48,8 +48,8 @@ jobs:
     #   env:
     #     CERT_PASS: ${{secrets.WINDOWS_CERT_PASS}}
     #     FORCE_LOCALIZE: true
-    - run: make release-windows-rebuild
-      shell: bash
+    # - run: make release-windows-rebuild
+    #   shell: bash
     - uses: actions/upload-artifact@v1
       with:
         name: windows-assets
