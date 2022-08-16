@@ -27,10 +27,10 @@ jobs:
       shell: bash
     - run: mkdir -p bin/releases
       shell: bash
-    - run: CERT_FILE="$HOME/cert.pfx" make release-write-certificate
-      shell: bash
-      env:
-        CERT_CONTENTS: ${{secrets.WINDOWS_CERT_BASE64}}
+    # - run: CERT_FILE="$HOME/cert.pfx" make release-write-certificate
+    #   shell: bash
+    #   env:
+    #     CERT_CONTENTS: ${{secrets.WINDOWS_CERT_BASE64}}
     - run: PATH="$HOME/go/bin:$PATH" GOARCH=amd64 go generate && make bin/releases/git-lfs-windows-amd64-$(git describe).zip
       shell: bash
       env:
@@ -43,11 +43,11 @@ jobs:
       shell: bash
       env:
         FORCE_LOCALIZE: true
-    - run: PATH="$HOME/go/bin:/c/Program Files (x86)/Windows Kits/10/bin/10.0.17763.0/x86:$PATH" CERT_FILE="$HOME/cert.pfx" make release-windows
-      shell: bash
-      env:
-        CERT_PASS: ${{secrets.WINDOWS_CERT_PASS}}
-        FORCE_LOCALIZE: true
+    # - run: PATH="$HOME/go/bin:/c/Program Files (x86)/Windows Kits/10/bin/10.0.17763.0/x86:$PATH" CERT_FILE="$HOME/cert.pfx" make release-windows
+    #   shell: bash
+    #   env:
+    #     CERT_PASS: ${{secrets.WINDOWS_CERT_PASS}}
+    #     FORCE_LOCALIZE: true
     - run: make release-windows-rebuild
       shell: bash
     - uses: actions/upload-artifact@v1
