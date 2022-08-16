@@ -356,7 +356,7 @@ func changeToWorkingCopy() {
 	cwd, err = tools.CanonicalizeSystemPath(cwd)
 	if err != nil {
 		ExitWithError(errors.Wrap(
-			err, tr.Tr.Get("Could not canonicalize current working directory")))
+			err, tr.Tr.Get("Could not canonicalize current working directory: %s", cwd)))
 	}
 
 	// If the current working directory is not within the repository's
