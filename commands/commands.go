@@ -348,15 +348,16 @@ func setupWorkingCopy() {
 
 func changeToWorkingCopy() {
 	workingDir := cfg.LocalWorkingDir()
+	rawCWD, err := os.Getwd()
 	cwd, err := tools.Getwd()
 	if err != nil {
 		ExitWithError(errors.Wrap(
-			err, tr.Tr.Get("Could not determine current working directory")))
+			err, tr.Tr.Get("Could not determine current working directory (rawCWD=%s cwd=%s)",rawCWD, cwd)))
 	}
 	newCWD, err := tools.CanonicalizeSystemPath(cwd)
 	if err != nil {
 		ExitWithError(errors.Wrap(
-			err, tr.Tr.Get("Could not canonicalize current working directory: %s", cwd)))
+			err, tr.Tr.Get("Could not canonicalize current working directory (rawCWD=%s cwd=%s)",rawCWD, cwd)))
 	}
 	cwd = newCWD
 
